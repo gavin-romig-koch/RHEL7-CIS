@@ -56,11 +56,22 @@
       - rule_6.1.5
 
 - name: "SCORED | 6.1.6 | PATCH | Ensure permissions on /etc/passwd- are configured"
+  stat:
+      path: /etc/passwd-
+  register: passwd_minus_file
+  tags:
+      - level1
+      - level2
+      - patch
+      - rule_6.1.6
+
+- name: "SCORED | 6.1.6 | PATCH | Ensure permissions on /etc/passwd- are configured"
   file:
       dest: /etc/passwd-
       owner: root
       group: root
       mode: 0600
+  when: passwd_minus_file.stat.exists
   tags:
       - level1
       - level2
@@ -68,11 +79,22 @@
       - rule_6.1.6
 
 - name: "SCORED | 6.1.7 | PATCH | Ensure permissions on /etc/shadow- are configured"
+  stat:
+      path: /etc/shadow-
+  register: shadow_minus_file
+  tags:
+      - level1
+      - level2
+      - patch
+      - rule_6.1.7
+
+- name: "SCORED | 6.1.7 | PATCH | Ensure permissions on /etc/shadow- are configured"
   file:
       dest: /etc/shadow-
       owner: root
       group: root
       mode: 0000
+  when: shadow_minus_file.stat.exists
   tags:
       - level1
       - level2
@@ -80,11 +102,22 @@
       - rule_6.1.7
 
 - name: "SCORED | 6.1.8 | PATCH | Ensure permissions on /etc/group- are configured"
+  stat:
+      path: /etc/group-
+  register: group_minus_file
+  tags:
+      - level1
+      - level2
+      - patch
+      - rule_6.1.8
+
+- name: "SCORED | 6.1.8 | PATCH | Ensure permissions on /etc/group- are configured"
   file:
       dest: /etc/group-
       owner: root
       group: root
       mode: 0600
+  when: group_minus_file.stat.exists
   tags:
       - level1
       - level2
@@ -92,11 +125,22 @@
       - rule_6.1.8
 
 - name: "SCORED | 6.1.9 | PATCH | Ensure permissions on /etc/gshadow- are configured"
+  stat:
+      path: /etc/gshadow-
+  register: gshadow_minus_file
+  tags:
+      - level1
+      - level2
+      - patch
+      - rule_6.1.9
+
+- name: "SCORED | 6.1.9 | PATCH | Ensure permissions on /etc/gshadow- are configured"
   file:
       dest: /etc/gshadow-
       owner: root
       group: root
       mode: 0600
+  when: gshadow_minus_file.stat.exists
   tags:
       - level1
       - level2
